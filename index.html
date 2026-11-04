@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supply Chain Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar__brand">
+        <div class="logo" id="logo" aria-hidden="true">NW</div>
+        <span class="sidebar__name" id="companyName">Company</span>
+        <button class="icon-btn sidebar__collapse" id="collapseBtn" aria-label="Collapse sidebar" title="Collapse sidebar"></button>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar__foot">
+        <span class="sidebar__name muted">v1.0 · sample data</span>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu"></button>
+        <div class="topbar__title">
+          <h1 id="pageTitle">Dashboard</h1>
+          <p id="pageSub" class="muted"></p>
+        </div>
+        <button class="btn btn--ghost tasks-toggle" id="tasksToggle" aria-label="Show tasks">
+          <span id="tasksToggleIcon"></span> Tasks <span class="count" id="tasksCount">0</span>
+        </button>
+      </header>
+      <div class="view" id="view"></div>
+    </main>
+
+    <!-- RIGHT PANEL: TASK TRACKER -->
+    <aside class="panel" id="panel" aria-label="Task tracker">
+      <div class="panel__head">
+        <h2>Task tracker</h2>
+        <button class="icon-btn panel__close" id="panelClose" aria-label="Close tasks"></button>
+      </div>
+      <div class="panel__tools">
+        <select id="picFilter" class="input" aria-label="Filter by PIC"></select>
+        <button class="btn btn--primary" id="addTaskBtn">+ Add task</button>
+      </div>
+      <div class="panel__stats" id="taskStats"></div>
+      <ul class="task-list" id="taskList"></ul>
+    </aside>
+  </div>
+
+  <!-- ADD TASK DIALOG -->
+  <dialog class="modal" id="taskDialog">
+    <form method="dialog" id="taskForm" class="form">
+      <h3>Add task</h3>
+      <label>Title
+        <input class="input" name="title" required maxlength="80" placeholder="e.g. Review commercial bids">
+      </label>
+      <label>Tender
+        <select class="input" name="tenderId" required></select>
+      </label>
+      <div class="form__row">
+        <label>PIC
+          <select class="input" name="picId" required></select>
+        </label>
+        <label>Priority
+          <select class="input" name="priority">
+            <option>High</option><option selected>Medium</option><option>Low</option>
+          </select>
+        </label>
+      </div>
+      <label>Due date
+        <input class="input" type="date" name="due" required>
+      </label>
+      <div class="form__actions">
+        <button type="button" class="btn btn--ghost" id="cancelTask">Cancel</button>
+        <button type="submit" class="btn btn--primary">Add task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
